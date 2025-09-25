@@ -1,7 +1,7 @@
 {
   "name": "aspect-sdk",
-  "version": "0.0.2",
-  "description": "TypeScript SDK for Aspect Media Engine API",
+  "version": "0.0.3",
+  "description": "Node.js SDK for Aspect Media Engine API",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
@@ -32,11 +32,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aspect-hq/aspect-typescript-sdk.git"
+    "url": "https://github.com/aspect-hq/aspect-node-sdk.git"
   },
   "homepage": "https://aspect.inc",
   "bugs": {
-    "url": "https://github.com/aspect-hq/aspect-typescript-sdk/issues"
+    "url": "https://github.com/aspect-hq/aspect-node-sdk/issues"
   },
   "dependencies": {
     "axios": "^1.6.0"

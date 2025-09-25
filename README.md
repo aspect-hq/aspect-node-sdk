@@ -8,17 +8,20 @@ This SDK delivers an intuitive interface for building applications with Aspect's
 npm install aspect-sdk
 ```
 
-## Quick Start
+## Usage
+
+### Initialize the Aspect client
+
+Sign up for your api key [here](https://playground.aspect.inc) and then head to the Api keys [tab](https://playground.aspect.inc/api-keys)
 
 ```typescript
-import { AspectClient } from 'aspect-sdk'
+import { Aspect } from 'aspect-sdk'
 
-const client = new AspectClient({
+const client = new Aspect({
     apiKey: 'your-api-key', // Required: Your API key 
 })
 ```
 
-## Usage Examples
 
 ### Create an Index
 
@@ -70,9 +73,9 @@ Search across your indexed video content using natural language queries.
 
 ```typescript
 // Basic search
-const searchResults = await client.search.query(
+const searchResults = await client.search.run(
     indexId: index.id,
-    queryText: "",
+    query: "",
 )
 console.log("Search results", searchResults)
 
