@@ -28,6 +28,7 @@ src/models/asset-type.ts
 src/models/asset-update-request.ts
 src/models/asset-update-response.ts
 src/models/core-feature-type.ts
+src/models/embed-provider-type.ts
 src/models/feature-info.ts
 src/models/feature-state.ts
 src/models/feature-type.ts
@@ -36,11 +37,14 @@ src/models/index-create-request.ts
 src/models/index-create-response.ts
 src/models/index-get-response.ts
 src/models/index-list-response.ts
+src/models/index-unit-get-response.ts
 src/models/index-update-request.ts
 src/models/index-update-response.ts
 src/models/index.ts
 src/models/preview-get-response.ts
 src/models/proxy-get-response.ts
+src/models/search-request.ts
+src/models/search-response.ts
 src/models/task-create-request.ts
 src/models/task-create-response.ts
 src/models/task-get-response.ts

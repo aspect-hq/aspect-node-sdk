@@ -1,6 +1,6 @@
 // Types for the user-facing SDK
 
-export interface AspectClientConfig {
+export interface AspectConfig {
   /**
    * Base URL for the Aspect API
    * @default "https://api.aspect.inc"

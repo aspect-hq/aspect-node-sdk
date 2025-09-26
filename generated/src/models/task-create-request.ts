@@ -38,7 +38,7 @@ export interface TaskCreateRequest {
      * @type {Array<CoreFeatureType>}
      * @memberof TaskCreateRequest
      */
-    featureTypes: Array<CoreFeatureType>;
+    features: Array<CoreFeatureType>;
 }
 
 /**
@@ -46,7 +46,7 @@ export interface TaskCreateRequest {
  */
 export function instanceOfTaskCreateRequest(value: object): value is TaskCreateRequest {
     if (!('assetId' in value) || value['assetId'] === undefined) return false;
-    if (!('featureTypes' in value) || value['featureTypes'] === undefined) return false;
+    if (!('features' in value) || value['features'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +61,7 @@ export function TaskCreateRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'assetId': json['asset_id'],
-        'featureTypes': ((json['feature_types'] as Array<any>).map(CoreFeatureTypeFromJSON)),
+        'features': ((json['features'] as Array<any>).map(CoreFeatureTypeFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function TaskCreateRequestToJSONTyped(value?: TaskCreateRequest | null, i
     return {
         
         'asset_id': value['assetId'],
-        'feature_types': ((value['featureTypes'] as Array<any>).map(CoreFeatureTypeToJSON)),
+        'features': ((value['features'] as Array<any>).map(CoreFeatureTypeToJSON)),
     };
 }
 

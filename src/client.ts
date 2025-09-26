@@ -1,6 +1,6 @@
 // Unified client for the Aspect SDK
 import { Configuration, ConfigurationParameters } from '../generated/src/runtime'
-import type { AspectClientConfig } from './types'
+import type { AspectConfig } from './types'
 
 // Import resource classes
 import { Assets } from './resources/assets'
@@ -10,7 +10,7 @@ import { Search } from './resources/search'
 import { Tasks } from './resources/tasks'
 import { Analyze } from './resources/analyze'
 
-export class AspectClient {
+export class Aspect {
   private config: Configuration
 
   // Resource instances
@@ -21,7 +21,7 @@ export class AspectClient {
   public readonly tasks: Tasks
   public readonly analyze: Analyze
 
-  constructor(config: AspectClientConfig) {
+  constructor(config: AspectConfig) {
     const configParams: ConfigurationParameters = {
       basePath: config.baseUrl || 'https://api.aspect.inc',
       accessToken: config.apiKey,

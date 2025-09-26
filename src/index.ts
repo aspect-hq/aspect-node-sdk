@@ -1,6 +1,6 @@
 // Main entry point for the Aspect SDK
-export { AspectClient } from './client'
-export type { AspectClientConfig } from './types'
+export { Aspect } from './client'
+export type { AspectConfig } from './types'
 
 // Re-export resource classes for advanced usage
 export { Assets } from './resources/assets'
@@ -28,6 +28,7 @@ export type {
   FeatureInfo,
   FeatureState,
   FeatureType,
+  CoreFeatureType,
   PreviewGetResponse,
   ProxyGetResponse,
   TaskCreateRequest,
@@ -41,7 +42,9 @@ export type {
   AnalyzeBoxResponse,
   AnalyzePointCoordinate,
   AnalyzePointRequest,
-  AnalyzePointResponse
+  AnalyzePointResponse,
+  SearchRequest,
+  SearchResponse,
 } from '../generated/src/models'
 
 // Re-export custom types

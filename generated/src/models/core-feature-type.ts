@@ -20,7 +20,7 @@
 export const CoreFeatureType = {
     Proxy: 'proxy',
     Preview: 'preview',
-    Embedding: 'embedding',
+    Visual: 'visual',
     Transcription: 'transcription'
 } as const;
 export type CoreFeatureType = typeof CoreFeatureType[keyof typeof CoreFeatureType];

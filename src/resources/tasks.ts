@@ -36,9 +36,7 @@ export class Tasks implements TaskExtensions {
     const { interval = 5000, callback } = options
 
     while (true) {
-      console.log('Polling task...')
       const currentTask = await this.get(taskId)
-      console.log('task', currentTask)
       
       // Call the callback if provided
       if (callback) {
@@ -46,12 +44,9 @@ export class Tasks implements TaskExtensions {
       }
 
       // Check if all features are in a final state
-      console.log('areAllFeaturesDone', areAllFeaturesDone(currentTask))
       if (areAllFeaturesDone(currentTask)) {
         return currentTask
       }
-
-      console.log('waiting for interval...')
 
       // Wait for the specified interval before polling again
       await delay(interval)

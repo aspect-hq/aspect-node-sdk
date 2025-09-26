@@ -86,6 +86,12 @@ export interface AssetListResponse {
     saveOriginal: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof AssetListResponse
+     */
+    duration?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof AssetListResponse
      */
@@ -164,6 +170,7 @@ export function AssetListResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         'sizeBytes': json['size_bytes'],
         'mimeType': json['mime_type'],
         'saveOriginal': json['save_original'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
         'userId': json['user_id'],
         'indexId': json['index_id'],
         'features': (mapValues(json['features'], FeatureInfoFromJSON)),
@@ -191,6 +198,7 @@ export function AssetListResponseToJSONTyped(value?: AssetListResponse | null, i
         'size_bytes': value['sizeBytes'],
         'mime_type': value['mimeType'],
         'save_original': value['saveOriginal'],
+        'duration': value['duration'],
         'user_id': value['userId'],
         'index_id': value['indexId'],
         'features': (mapValues(value['features'], FeatureInfoToJSON)),

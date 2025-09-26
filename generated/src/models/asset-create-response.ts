@@ -25,6 +25,12 @@ export interface AssetCreateResponse {
      * @memberof AssetCreateResponse
      */
     assetId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AssetCreateResponse
+     */
+    taskId: string;
 }
 
 /**
@@ -32,6 +38,7 @@ export interface AssetCreateResponse {
  */
 export function instanceOfAssetCreateResponse(value: object): value is AssetCreateResponse {
     if (!('assetId' in value) || value['assetId'] === undefined) return false;
+    if (!('taskId' in value) || value['taskId'] === undefined) return false;
     return true;
 }
 
@@ -46,6 +53,7 @@ export function AssetCreateResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'assetId': json['asset_id'],
+        'taskId': json['task_id'],
     };
 }
 
@@ -61,6 +69,7 @@ export function AssetCreateResponseToJSONTyped(value?: AssetCreateResponse | nul
     return {
         
         'asset_id': value['assetId'],
+        'task_id': value['taskId'],
     };
 }
 

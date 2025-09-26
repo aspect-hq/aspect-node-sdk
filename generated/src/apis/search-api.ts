@@ -14,6 +14,27 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  EmbedProviderType,
+  HTTPValidationError,
+  SearchRequest,
+  SearchResponse,
+} from '../models/index';
+import {
+    EmbedProviderTypeFromJSON,
+    EmbedProviderTypeToJSON,
+    HTTPValidationErrorFromJSON,
+    HTTPValidationErrorToJSON,
+    SearchRequestFromJSON,
+    SearchRequestToJSON,
+    SearchResponseFromJSON,
+    SearchResponseToJSON,
+} from '../models/index';
+
+export interface SearchSearchRunRequest {
+    searchRequest: SearchRequest;
+    providerType?: EmbedProviderType | null;
+}
 
 /**
  * SearchApi - interface
@@ -25,17 +46,19 @@ export interface SearchApiInterface {
     /**
      * Perform a search operation
      * @summary Search
+     * @param {SearchRequest} searchRequest 
+     * @param {EmbedProviderType} [providerType] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SearchApiInterface
      */
-    searchSearchRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
+    searchSearchRunRaw(requestParameters: SearchSearchRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchResponse>>;
 
     /**
      * Perform a search operation
      * Search
      */
-    searchSearch(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
+    searchSearchRun(requestParameters: SearchSearchRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchResponse>;
 
 }
 
@@ -48,10 +71,23 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
      * Perform a search operation
      * Search
      */
-    async searchSearchRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async searchSearchRunRaw(requestParameters: SearchSearchRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchResponse>> {
+        if (requestParameters['searchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'searchRequest',
+                'Required parameter "searchRequest" was null or undefined when calling searchSearchRun().'
+            );
+        }
+
         const queryParameters: any = {};
 
+        if (requestParameters['providerType'] != null) {
+            queryParameters['provider_type'] = requestParameters['providerType'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // ApiKeyAuth authentication
@@ -66,28 +102,25 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
             }
         }
 
-        let urlPath = `/search/`;
+        let urlPath = `/search/run`;
 
         const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: SearchRequestToJSON(requestParameters['searchRequest']),
         }, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<any>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse(response, (jsonValue) => SearchResponseFromJSON(jsonValue));
     }
 
     /**
      * Perform a search operation
      * Search
      */
-    async searchSearch(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
-        const response = await this.searchSearchRaw(initOverrides);
+    async searchSearchRun(requestParameters: SearchSearchRunRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchResponse> {
+        const response = await this.searchSearchRunRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

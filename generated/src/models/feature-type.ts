@@ -20,7 +20,8 @@
 export const FeatureType = {
     Proxy: 'proxy',
     Preview: 'preview',
-    Embedding: 'embedding',
+    SceneDetect: 'scene_detect',
+    Visual: 'visual',
     Transcription: 'transcription',
     AudioProxy: 'audio_proxy',
     ModelProxy: 'model_proxy'

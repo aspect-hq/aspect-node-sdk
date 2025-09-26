@@ -27,6 +27,13 @@ import {
     FeatureInfoToJSON,
     FeatureInfoToJSONTyped,
 } from './feature-info';
+import type { IndexUnitGetResponse } from './index-unit-get-response';
+import {
+    IndexUnitGetResponseFromJSON,
+    IndexUnitGetResponseFromJSONTyped,
+    IndexUnitGetResponseToJSON,
+    IndexUnitGetResponseToJSONTyped,
+} from './index-unit-get-response';
 import type { ProxyGetResponse } from './proxy-get-response';
 import {
     ProxyGetResponseFromJSON,
@@ -86,6 +93,12 @@ export interface AssetGetResponse {
     saveOriginal: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof AssetGetResponse
+     */
+    duration?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof AssetGetResponse
      */
@@ -114,6 +127,12 @@ export interface AssetGetResponse {
      * @memberof AssetGetResponse
      */
     preview?: PreviewGetResponse | null;
+    /**
+     * 
+     * @type {Array<IndexUnitGetResponse>}
+     * @memberof AssetGetResponse
+     */
+    indexUnits?: Array<IndexUnitGetResponse> | null;
     /**
      * 
      * @type {Date}
@@ -164,11 +183,13 @@ export function AssetGetResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
         'sizeBytes': json['size_bytes'],
         'mimeType': json['mime_type'],
         'saveOriginal': json['save_original'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
         'userId': json['user_id'],
         'indexId': json['index_id'],
         'features': (mapValues(json['features'], FeatureInfoFromJSON)),
         'proxy': json['proxy'] == null ? undefined : ProxyGetResponseFromJSON(json['proxy']),
         'preview': json['preview'] == null ? undefined : PreviewGetResponseFromJSON(json['preview']),
+        'indexUnits': json['index_units'] == null ? undefined : ((json['index_units'] as Array<any>).map(IndexUnitGetResponseFromJSON)),
         'created': (new Date(json['created'])),
         'updated': (new Date(json['updated'])),
     };
@@ -191,11 +212,13 @@ export function AssetGetResponseToJSONTyped(value?: AssetGetResponse | null, ign
         'size_bytes': value['sizeBytes'],
         'mime_type': value['mimeType'],
         'save_original': value['saveOriginal'],
+        'duration': value['duration'],
         'user_id': value['userId'],
         'index_id': value['indexId'],
         'features': (mapValues(value['features'], FeatureInfoToJSON)),
         'proxy': ProxyGetResponseToJSON(value['proxy']),
         'preview': PreviewGetResponseToJSON(value['preview']),
+        'index_units': value['indexUnits'] == null ? undefined : ((value['indexUnits'] as Array<any>).map(IndexUnitGetResponseToJSON)),
         'created': ((value['created']).toISOString()),
         'updated': ((value['updated']).toISOString()),
     };
