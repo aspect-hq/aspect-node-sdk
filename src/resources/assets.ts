@@ -17,8 +17,8 @@ export interface AssetCreateRequest {
   saveOriginal?: boolean
   id?: string
   features?: FeatureType[]
-  file?: File | ReadStream | Blob | string
-  url?: string
+  assetFile?: File | ReadStream | Blob | string
+  assetUrl?: string
   name: string
 }
 
@@ -47,7 +47,10 @@ export class Assets {
    * Create an asset
    */
   async create(options: AssetCreateRequest): Promise<AssetCreateResponse> {
-    const convertedFile = await this.convertToBlob(options.file)
+    let convertedFile = undefined
+    if (options.assetFile) {
+      convertedFile = await this.convertToBlob(options.assetFile)
+    }
 
     return await this.api.assetsAssets_3({
       indexId: options.indexId,
@@ -55,7 +58,7 @@ export class Assets {
       id: options.id || null,
       features: options.features,
       assetFile: convertedFile,
-      assetUrl: null,
+      assetUrl: options.assetUrl,
       name: options.name
     })
   }

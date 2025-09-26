@@ -46,8 +46,8 @@ Assets are videos or images that get AI-indexed by the system. You can upload fr
 const { assetId, taskId } = await client.assets.create({
     indexId: index.id,
     name: 'video.mp4',
-    file: '/path/to/video.mp4',
-    // url: 'https://example.com/video.mp4', can also optionally pass a url instead of file to assets.create
+    assetFile: '/path/to/video.mp4',
+    // assetUrl: 'https://example.com/video.mp4', can also optionally pass a url instead of file to assets.create
     saveOriginal: true, // Whether to store the original file
     features: ['transcription'] // Optional: specify which AI features to additionally run specifically for this asset (union with index default features)
 })
@@ -126,7 +126,7 @@ try {
     const asset = await client.assets.create({
         indexId: 'invalid-id',
         name: 'video.mp4',
-        file: '/path/to/video.mp4'
+        assetFile: '/path/to/video.mp4'
     })
 } catch (error) {
     console.error('Failed to create asset:', error.message)
