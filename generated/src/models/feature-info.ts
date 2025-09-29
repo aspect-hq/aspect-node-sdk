@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { AssetStorageVariant } from './asset-storage-variant';
+import {
+    AssetStorageVariantFromJSON,
+    AssetStorageVariantFromJSONTyped,
+    AssetStorageVariantToJSON,
+    AssetStorageVariantToJSONTyped,
+} from './asset-storage-variant';
 import type { FeatureState } from './feature-state';
 import {
     FeatureStateFromJSON,
@@ -33,6 +40,12 @@ export interface FeatureInfo {
      * @memberof FeatureInfo
      */
     state: FeatureState;
+    /**
+     * 
+     * @type {AssetStorageVariant}
+     * @memberof FeatureInfo
+     */
+    storageVariant?: AssetStorageVariant | null;
 }
 
 
@@ -56,6 +69,7 @@ export function FeatureInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'state': FeatureStateFromJSON(json['state']),
+        'storageVariant': json['storage_variant'] == null ? undefined : AssetStorageVariantFromJSON(json['storage_variant']),
     };
 }
 
@@ -71,6 +85,7 @@ export function FeatureInfoToJSONTyped(value?: FeatureInfo | null, ignoreDiscrim
     return {
         
         'state': FeatureStateToJSON(value['state']),
+        'storage_variant': AssetStorageVariantToJSON(value['storageVariant']),
     };
 }
 

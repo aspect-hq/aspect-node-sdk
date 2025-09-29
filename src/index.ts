@@ -27,7 +27,6 @@ export type {
   AssetUpdateResponse,
   FeatureInfo,
   FeatureState,
-  FeatureType,
   CoreFeatureType,
   PreviewGetResponse,
   ProxyGetResponse,

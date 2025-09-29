@@ -173,7 +173,7 @@ export class IndexesApi extends runtime.BaseAPI implements IndexesApiInterface {
             }
         }
 
-        let urlPath = `/indexes/`;
+        let urlPath = `/indexes`;
 
         const response = await this.request({
             path: urlPath,
@@ -387,7 +387,7 @@ export class IndexesApi extends runtime.BaseAPI implements IndexesApiInterface {
             }
         }
 
-        let urlPath = `/indexes/`;
+        let urlPath = `/indexes`;
 
         const response = await this.request({
             path: urlPath,

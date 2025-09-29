@@ -31,7 +31,6 @@ src/models/core-feature-type.ts
 src/models/embed-provider-type.ts
 src/models/feature-info.ts
 src/models/feature-state.ts
-src/models/feature-type.ts
 src/models/http-validation-error.ts
 src/models/index-create-request.ts
 src/models/index-create-response.ts

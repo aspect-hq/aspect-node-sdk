@@ -5,7 +5,7 @@ import type {
   AssetGetResponse,
   AssetCreateResponse,
   AssetDownloadGetResponse,
-  FeatureType,
+  CoreFeatureType,
   AssetUpdateRequest,
   AssetListResponse,
   AssetUpdateResponse
@@ -16,7 +16,7 @@ export interface AssetCreateRequest {
   indexId: string
   saveOriginal?: boolean
   id?: string
-  features?: FeatureType[]
+  features?: CoreFeatureType[]
   assetFile?: File | ReadStream | Blob | string
   assetUrl?: string
   name: string

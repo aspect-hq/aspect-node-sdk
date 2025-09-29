@@ -69,6 +69,12 @@ export interface IndexUpdateRequest {
      * @memberof IndexUpdateRequest
      */
     duration?: number | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IndexUpdateRequest
+     */
+    samplePrompts?: Array<string> | null;
 }
 
 /**
@@ -95,6 +101,7 @@ export function IndexUpdateRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         'sizeBytes': json['size_bytes'] == null ? undefined : json['size_bytes'],
         'totalTokensUsed': json['total_tokens_used'] == null ? undefined : json['total_tokens_used'],
         'duration': json['duration'] == null ? undefined : json['duration'],
+        'samplePrompts': json['sample_prompts'] == null ? undefined : json['sample_prompts'],
     };
 }
 
@@ -116,6 +123,7 @@ export function IndexUpdateRequestToJSONTyped(value?: IndexUpdateRequest | null,
         'size_bytes': value['sizeBytes'],
         'total_tokens_used': value['totalTokensUsed'],
         'duration': value['duration'],
+        'sample_prompts': value['samplePrompts'],
     };
 }
 

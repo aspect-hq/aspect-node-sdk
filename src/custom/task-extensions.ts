@@ -23,13 +23,13 @@ export interface TaskExtensions {
 }
 
 /**
- * Checks if all features in a task are in a final state (completed, failed, or cancelled)
+ * Checks if all features in a task are in a final state (not queued or processing)
  */
 export function areAllFeaturesDone(task: TaskGetResponse): boolean {
-  const finalStates: FeatureState[] = ['completed', 'failed', 'cancelled']
+  const nonFinalStates: FeatureState[] = ['queued', 'processing']
   
-  return Object.values(task.features).every((featureInfo: FeatureInfo) => 
-    finalStates.includes(featureInfo.state)
+  return !Object.values(task.features).some((featureInfo: FeatureInfo) => 
+    nonFinalStates.includes(featureInfo.state)
   )
 }
 

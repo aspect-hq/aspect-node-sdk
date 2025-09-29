@@ -21,7 +21,7 @@ import type {
   AssetListResponse,
   AssetUpdateRequest,
   AssetUpdateResponse,
-  FeatureType,
+  CoreFeatureType,
   HTTPValidationError,
 } from '../models/index';
 import {
@@ -37,8 +37,8 @@ import {
     AssetUpdateRequestToJSON,
     AssetUpdateResponseFromJSON,
     AssetUpdateResponseToJSON,
-    FeatureTypeFromJSON,
-    FeatureTypeToJSON,
+    CoreFeatureTypeFromJSON,
+    CoreFeatureTypeToJSON,
     HTTPValidationErrorFromJSON,
     HTTPValidationErrorToJSON,
 } from '../models/index';
@@ -69,7 +69,7 @@ export interface AssetsAssets0Request {
     saveOriginal: boolean;
     name: string;
     id?: string | null;
-    features?: Array<FeatureType>;
+    features?: Array<CoreFeatureType>;
     assetFile?: Blob | null;
     assetUrl?: string | null;
 }
@@ -169,7 +169,7 @@ export interface AssetsApiInterface {
      * @param {boolean} saveOriginal Whether to save the original file
      * @param {string} name The name of the asset. Must include the extension.
      * @param {string} [id] 
-     * @param {Array<FeatureType>} [features] Features to be extracted on the asset
+     * @param {Array<CoreFeatureType>} [features] Features to be extracted on the asset
      * @param {Blob} [assetFile] 
      * @param {string} [assetUrl] 
      * @param {*} [options] Override http request option.

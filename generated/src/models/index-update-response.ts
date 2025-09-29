@@ -95,6 +95,12 @@ export interface IndexUpdateResponse {
     isSampleReady: boolean;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof IndexUpdateResponse
+     */
+    samplePrompts: Array<string>;
+    /**
+     * 
      * @type {Date}
      * @memberof IndexUpdateResponse
      */
@@ -122,6 +128,7 @@ export function instanceOfIndexUpdateResponse(value: object): value is IndexUpda
     if (!('defaultFeatures' in value) || value['defaultFeatures'] === undefined) return false;
     if (!('isSample' in value) || value['isSample'] === undefined) return false;
     if (!('isSampleReady' in value) || value['isSampleReady'] === undefined) return false;
+    if (!('samplePrompts' in value) || value['samplePrompts'] === undefined) return false;
     if (!('created' in value) || value['created'] === undefined) return false;
     if (!('updated' in value) || value['updated'] === undefined) return false;
     return true;
@@ -148,6 +155,7 @@ export function IndexUpdateResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'defaultFeatures': ((json['default_features'] as Array<any>).map(CoreFeatureTypeFromJSON)),
         'isSample': json['is_sample'],
         'isSampleReady': json['is_sample_ready'],
+        'samplePrompts': json['sample_prompts'],
         'created': (new Date(json['created'])),
         'updated': (new Date(json['updated'])),
     };
@@ -175,6 +183,7 @@ export function IndexUpdateResponseToJSONTyped(value?: IndexUpdateResponse | nul
         'default_features': ((value['defaultFeatures'] as Array<any>).map(CoreFeatureTypeToJSON)),
         'is_sample': value['isSample'],
         'is_sample_ready': value['isSampleReady'],
+        'sample_prompts': value['samplePrompts'],
         'created': ((value['created']).toISOString()),
         'updated': ((value['updated']).toISOString()),
     };

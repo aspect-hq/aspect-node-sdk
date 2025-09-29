@@ -20,7 +20,6 @@ export * from './core-feature-type';
 export * from './embed-provider-type';
 export * from './feature-info';
 export * from './feature-state';
-export * from './feature-type';
 export * from './http-validation-error';
 export * from './index-create-request';
 export * from './index-create-response';
